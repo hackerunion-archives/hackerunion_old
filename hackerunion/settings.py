@@ -3,9 +3,9 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
+ADMINS = [
+    ('Michael Dippery', 'mpd@nyhacker.org'),
+]
 
 MANAGERS = ADMINS
 
@@ -108,7 +108,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -119,7 +119,10 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-)
+    'chapters',
+    'people',
+    'projects',
+]
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
