@@ -1,5 +1,0 @@
-hackerunion.org
-===============
-
-Hello world
-
