@@ -1,3 +1,6 @@
+{% load cache %}
 {% load people %}
 
-<img src="{{ hacker|gravatar_url }}">
+{% cache 3600 people.profile.gravatar hacker.username %}
+  <img src="{{ hacker|gravatar_url }}">
+{% endcache %}

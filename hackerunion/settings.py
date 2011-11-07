@@ -18,6 +18,13 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'hackerunion',
+    }
+}
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -153,3 +160,13 @@ LOGGING = {
         },
     }
 }
+
+
+try:
+    from settings_local import *
+except ImportError:
+    print """\
+You have not enabled local settings.
+If you would like to customize your local development settings,
+create a file called settings.local.
+----"""
