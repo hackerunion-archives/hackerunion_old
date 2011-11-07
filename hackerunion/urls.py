@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.views.generic.simple import direct_to_template
+from django.views.generic.simple import direct_to_template, redirect_to
 
 from django.contrib import admin
 admin.autodiscover()
@@ -12,4 +12,8 @@ urlpatterns = patterns('',
     (r'^projects/', include('projects.urls', namespace='projects', app_name='projects')),
     
     url(r'^admin/', include(admin.site.urls)),
+    
+    # /users/ is the hardcoded Django root for auth users; redirect to people
+    (r'^users/$', redirect_to, {'url': '/people/'}),
+    (r'^users/(?P<username>[A-Za-z0-9]+)/$', redirect_to, {'url': '/people/%(username)s/'}),
 )
