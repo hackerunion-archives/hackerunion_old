@@ -7,6 +7,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = [
     ('Michael Dippery', 'mpd@nyhacker.org'),
+    ('Shane Reustle', 'sreustle@gmail.com'),
 ]
 
 MANAGERS = ADMINS
