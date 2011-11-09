@@ -1,4 +1,4 @@
 *.pyc
 /db/*
-!/db/.gitignore
+!/db/README*
 /hackerunion/settings_local.py
