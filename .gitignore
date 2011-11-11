@@ -2,3 +2,8 @@
 /db/*
 !/db/README*
 /hackerunion/settings_local.py
+/www/media/*
+!/www/media/.gitignore
+/www/static/*
+!/www/static/.gitignore
+
