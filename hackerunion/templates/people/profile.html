@@ -4,3 +4,11 @@
 {% cache 3600 people.profile.gravatar hacker.username %}
   <img src="{{ hacker|gravatar_url }}">
 {% endcache %}
+
+{% with hacker.get_profile as profile %}
+  <ul>
+    {% if profile.twitter_username %}<li><a href="http://twitter.com/{{ profile.twitter_username }}">@{{ profile.twitter_username }}</a></li>{% endif %}
+    {% if profile.facebook_username %}<li><a href="http://facebook.com/{{ profile.facebook_username }}">facebook.com/{{ profile.facebook_username }}</a></li>{% endif %}
+    {% if profile.tumblr_username %}<li><a href="http://{{ profile.tumblr_username}}.tumblr.com">{{ profile.tumblr_username }}.tumblr.com</a></li>{% endif %}
+  </ul>
+{% endwith %}
