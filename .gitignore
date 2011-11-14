@@ -6,4 +6,3 @@
 !/www/media/.gitignore
 /www/static/*
 !/www/static/.gitignore
-

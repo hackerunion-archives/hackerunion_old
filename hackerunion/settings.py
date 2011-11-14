@@ -162,6 +162,8 @@ LOGGING = {
     }
 }
 
+AUTH_PROFILE_MODULE = 'people.HackerProfile'
+
 
 try:
     from settings_local import *
