@@ -13,3 +13,7 @@
     username: jdraper
   model: auth.user
   pk: 1
+- fields: {availability: 3, facebook_username: jdraper, preferred_contact_email: jdraper@gmail.com,
+    tumblr_username: '', twitter_username: '', user: 1}
+  model: people.hackerprofile
+  pk: 1
