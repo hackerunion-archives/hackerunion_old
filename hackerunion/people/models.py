@@ -3,28 +3,16 @@ from django.db import models
 from django.db.models import permalink, signals
 
 
-class ServiceType(models.Model):
-    name = models.CharField(max_length=128)
-    username_url = models.CharField(max_length=128,
-        verbose_name='Username URL',
-        help_text='Use %s as a placeholder for usernames')
-    
-    def __unicode__(self):
-        return self.name
-
-
-class Service(models.Model):
-    user = models.ForeignKey(User, related_name='services')
-    type = models.ForeignKey(ServiceType, related_name='users')
-    username = models.CharField(max_length=128)
-    
-    def __unicode__(self):
-        return u"%s: %s" % (self.type, self.username)
-
-
 class HackerProfile(models.Model):
     user = models.OneToOneField(User)
+    
+    # Contact info
     preferred_contact_email = models.EmailField(blank=True, verbose_name='Contact email')
+    
+    # Social networking info
+    twitter_username = models.CharField(max_length=64, blank=True)
+    facebook_username = models.CharField(max_length=64, blank=True)
+    tumblr_username = models.CharField(max_length=64, blank=True)
     
     @property
     def contact_email(self):
