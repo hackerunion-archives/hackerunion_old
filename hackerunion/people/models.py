@@ -10,9 +10,9 @@ class HackerProfile(models.Model):
     preferred_contact_email = models.EmailField(blank=True, verbose_name='Contact email')
     
     # Social networking info
-    twitter_username = models.CharField(max_length=64, blank=True)
-    facebook_username = models.CharField(max_length=64, blank=True)
-    tumblr_username = models.CharField(max_length=64, blank=True)
+    twitter_username = models.CharField(max_length=64, blank=True, verbose_name='Twitter')
+    facebook_username = models.CharField(max_length=64, blank=True, verbose_name='Facebook')
+    tumblr_username = models.CharField(max_length=64, blank=True, verbose_name='Tumblr')
     
     @property
     def contact_email(self):
