@@ -3,11 +3,21 @@ from django.db import models
 from django.db.models import permalink, signals
 
 
+AVAILABILITY_CHOICES = [
+    (0, 'Unspecified'),
+    (1, 'Not available'),
+    (2, 'Available for work'),
+    (3, 'Available for contracts'),
+    (4, 'Contact for availability'),
+]
+
+
 class HackerProfile(models.Model):
     user = models.OneToOneField(User)
     
     # Contact info
     preferred_contact_email = models.EmailField(blank=True, verbose_name='Contact email')
+    availability = models.PositiveSmallIntegerField(choices=AVAILABILITY_CHOICES, default=0)
     
     # Social networking info
     twitter_username = models.CharField(max_length=64, blank=True, verbose_name='Twitter')

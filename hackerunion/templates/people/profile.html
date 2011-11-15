@@ -6,6 +6,10 @@
 {% endcache %}
 
 {% with hacker.get_profile as profile %}
+  {% if profile.availability %}
+    <p>Availability: {{ profile.availability|availability }}</p>
+  {% endif %}
+  
   <ul>
     {% if profile.twitter_username %}<li><a href="http://twitter.com/{{ profile.twitter_username }}">@{{ profile.twitter_username }}</a></li>{% endif %}
     {% if profile.facebook_username %}<li><a href="http://facebook.com/{{ profile.facebook_username }}">facebook.com/{{ profile.facebook_username }}</a></li>{% endif %}
