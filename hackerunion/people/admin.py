@@ -6,6 +6,7 @@ class HackerProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'preferred_contact_email', 'twitter_username',
                     'facebook_username', 'tumblr_username', 'availability']
     list_filter = ['availability']
+    ordering = ['user']
 
 
 admin.site.register(HackerProfile, HackerProfileAdmin)
