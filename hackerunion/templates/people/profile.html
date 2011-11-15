@@ -1,11 +1,13 @@
 {% load cache %}
 {% load people %}
 
-{% cache 3600 people.profile.gravatar hacker.username %}
-  <img src="{{ hacker|gravatar_url }}">
-{% endcache %}
-
 {% with hacker.get_profile as profile %}
+<h1>{{ hacker.get_full_name }} ({{ hacker.username }})</h1>
+  
+  {% cache 3600 people.profile.gravatar hacker.username %}
+    <img src="{{ profile|gravatar_url }}">
+  {% endcache %}
+  
   {% if profile.availability %}
     <p>Availability: {{ profile.get_availability_display }}</p>
   {% endif %}
