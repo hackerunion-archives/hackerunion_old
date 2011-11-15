@@ -14,6 +14,9 @@ class HackerProfile(models.Model):
     
     user = models.OneToOneField(User)
     
+    # Personal info
+    birthdate = models.DateField(blank=True)
+    
     # Contact info
     preferred_contact_email = models.EmailField(blank=True, verbose_name='Contact email')
     availability = models.PositiveSmallIntegerField(choices=AVAILABILITY_CHOICES, default=0)
