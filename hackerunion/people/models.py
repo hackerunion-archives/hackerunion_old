@@ -3,16 +3,15 @@ from django.db import models
 from django.db.models import permalink, signals
 
 
-AVAILABILITY_CHOICES = [
-    (0, 'Unspecified'),
-    (1, 'Not available'),
-    (2, 'Available for work'),
-    (3, 'Available for contracts'),
-    (4, 'Contact for availability'),
-]
-
-
 class HackerProfile(models.Model):
+    AVAILABILITY_CHOICES = [
+        (0, 'Unspecified'),
+        (1, 'Not available'),
+        (2, 'Available for work'),
+        (3, 'Available for contracts'),
+        (4, 'Contact for availability'),
+    ]
+    
     user = models.OneToOneField(User)
     
     # Contact info

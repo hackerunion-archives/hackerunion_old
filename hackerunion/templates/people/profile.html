@@ -7,7 +7,7 @@
 
 {% with hacker.get_profile as profile %}
   {% if profile.availability %}
-    <p>Availability: {{ profile.availability|availability }}</p>
+    <p>Availability: {{ profile.get_availability_display }}</p>
   {% endif %}
   
   <ul>
