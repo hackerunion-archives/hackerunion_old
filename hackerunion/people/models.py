@@ -20,6 +20,7 @@ class HackerProfile(models.Model):
     # Contact info
     preferred_contact_email = models.EmailField(blank=True, verbose_name='Contact email')
     availability = models.PositiveSmallIntegerField(choices=AVAILABILITY_CHOICES, default=0)
+    website = models.URLField(blank=True)
     
     # Social networking info
     twitter_username = models.CharField(max_length=64, blank=True, verbose_name='Twitter')

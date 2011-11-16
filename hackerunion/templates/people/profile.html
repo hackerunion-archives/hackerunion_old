@@ -15,6 +15,7 @@
   
   <ul>
     <li><a href="mailto:{{ profile.contact_email }}">{{ profile.contact_email }}</a></li>
+    {% if profile.website %}<li><a href="{{ profile.website }}">{{ profile.website|pretty_url }}</a></li>{% endif %}
     {% if profile.twitter_username %}<li><a href="http://twitter.com/{{ profile.twitter_username }}">@{{ profile.twitter_username }}</a></li>{% endif %}
     {% if profile.facebook_username %}<li><a href="http://facebook.com/{{ profile.facebook_username }}">facebook.com/{{ profile.facebook_username }}</a></li>{% endif %}
     {% if profile.tumblr_username %}<li><a href="http://{{ profile.tumblr_username}}.tumblr.com">{{ profile.tumblr_username }}.tumblr.com</a></li>{% endif %}
