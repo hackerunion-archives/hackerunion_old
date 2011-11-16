@@ -25,6 +25,9 @@ class HackerProfile(models.Model):
     twitter_username = models.CharField(max_length=64, blank=True, verbose_name='Twitter')
     facebook_username = models.CharField(max_length=64, blank=True, verbose_name='Facebook')
     tumblr_username = models.CharField(max_length=64, blank=True, verbose_name='Tumblr')
+    github_username = models.CharField(max_length=64, blank=True, verbose_name='GitHub')
+    stackoverflow_userid = models.PositiveIntegerField(blank=True, null=True,
+        verbose_name='Stack Overflow', help_text='Stack Overflow user ID number')
     
     @property
     def contact_email(self):
