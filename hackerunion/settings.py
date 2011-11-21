@@ -1,4 +1,9 @@
+# These settings provide sensible defaults for most projects. Each
+# option can be overridden in a file called 'settings_local.py';
+# and additional options can be added to that file as well.
+
 import os.path
+import sys
 
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -169,8 +174,4 @@ AUTH_PROFILE_MODULE = 'people.HackerProfile'
 try:
     from settings_local import *
 except ImportError:
-    print """\
-You have not enabled local settings.
-If you would like to customize your local development settings,
-create a file called settings.local.
-----"""
+    print >>sys.stderr, "Local settings could not be imported."
