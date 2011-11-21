@@ -129,6 +129,7 @@ INSTALLED_APPS = [
     
     # Core apps
     'chapters',
+    'events',
     'people',
     'projects',
     
