@@ -8,10 +8,10 @@ urlpatterns = patterns('',
     url(r'^$', direct_to_template, {'template': 'base.html'}, name='homepage'),
     (r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
     
-    (r'^chapters/', include('chapters.urls', namespace='chapters', app_name='chapters')),
-    (r'^events/', include('events.urls', namespace='events', app_name='events')),
-    (r'^people/', include('people.urls', namespace='people', app_name='people')),
-    (r'^projects/', include('projects.urls', namespace='projects', app_name='projects')),
+    (r'^chapters/', include('chapters.urls')),
+    (r'^events/', include('events.urls')),
+    (r'^people/', include('people.urls')),
+    (r'^projects/', include('projects.urls')),
     
     url(r'^admin/', include(admin.site.urls)),
     

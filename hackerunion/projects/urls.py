@@ -2,5 +2,5 @@ from django.conf.urls.defaults import patterns, url
 from django.views.generic.simple import direct_to_template
 
 urlpatterns = patterns('',
-    url(r'^$', direct_to_template, {'template': 'projects/base.html'}, name='index'),
+    url(r'^$', direct_to_template, {'template': 'projects/base.html'}, name='projects_index'),
 )

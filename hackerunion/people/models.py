@@ -39,7 +39,7 @@ class HackerProfile(models.Model):
     
     @permalink
     def get_absolute_url(self):
-        return ('people:profile', (), {'username': self.user.username})
+        return ('people_profile', (), {'username': self.user.username})
 
     class Meta:
         verbose_name = 'profile'

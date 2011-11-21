@@ -7,7 +7,7 @@ class URLTestCase(TestCase):
     fixtures = ['people.yaml']
     
     def setUp(self):
-        self.root_url = reverse('people:index')
+        self.root_url = reverse('people_index')
     
     def test_index(self):
         resp = self.client.get(self.root_url)
