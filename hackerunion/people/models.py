@@ -54,4 +54,4 @@ class HackerProfile(models.Model):
 def create_profile(sender, *args, **kwargs):
     user = kwargs['instance']
     profile, created = HackerProfile.objects.get_or_create(user=user)
-signals.post_save.connect(create_profile, sender=User)
+#signals.post_save.connect(create_profile, sender=User)
