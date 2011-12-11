@@ -43,13 +43,6 @@ def signup(request):
     email_filter = Q(username=email) | Q(email=email)
     if User.objects.filter(email_filter).exists():
         errors.append('The email is already taken.')
-    if hasattr(request, 'chapter'):
-        chapter = request.chapter
-    else:
-        if settings.DEBUG:
-            chapter = Chapter.objects.all()[0]
-        else:
-            errors.append('You must select a chapter to join.')
 
     # Re-render the form with validation errors, if necessary.
     if errors:
@@ -57,7 +50,9 @@ def signup(request):
 
     # Success!  Create the user.
     user = User.objects.create_user(email, email, password=password)
-    prof = HackerProfile.objects.create(user=user, chapter=chapter)
+    assert request.chapter is not None, \
+           'user hit a signup page outside of chapter'
+    prof = HackerProfile.objects.create(user=user, chapter=request.chapter)
     
     # TODO: Log them in
     return render(request, 'people/signup_confirmation.html', {'hacker': user})
