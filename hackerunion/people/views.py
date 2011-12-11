@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render, render_to_response
+from django.shortcuts import get_object_or_404, redirect, render, \
+                             render_to_response
 from annoying.decorators import render_to
 from django.core.validators import email_re
 
@@ -9,7 +9,7 @@ def userid(request, userid):
     if user.username != user.email:
         # The user has set a custom username, so redirect
         # to the "friendly" URL
-        return HttpResponseRedirect(user.get_profile().get_absolute_url())
+        return redirect(user.get_profile())
     return render_to_response('people/profile', {'hacker': user},
                               context_instance=RequestContext(request))
 
@@ -19,6 +19,7 @@ def profile(request, username):
     user = get_object_or_404(User, username=username)
     # `user` variable is already taken by a context processor
     return {'hacker': user}
+
 
 # Do the signup.
 # - Validate the fields and redirect them back to the form
