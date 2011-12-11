@@ -48,6 +48,6 @@ def signup(request):
         return render(request, 'people/signup.html', {'errors': errors})
 
     # Success!  Create the user.
-    user = User.objects.create_user(email, password)
+    user = User.objects.create_user(email, email, password=password)
     # TODO: Log them in
     return render(request, 'people/signup_confirmation.html', {'hacker': user})
