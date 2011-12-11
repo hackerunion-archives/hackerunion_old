@@ -9,8 +9,7 @@ def userid(request, userid):
         # The user has set a custom username, so redirect
         # to the "friendly" URL
         return redirect(user.get_profile())
-    return render_to_response('people/profile', {'hacker': user},
-                              context_instance=RequestContext(request))
+    return render(request, 'people/profile.html', {'hacker': user})
 
 
 def profile(request, username):
