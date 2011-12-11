@@ -45,6 +45,8 @@ class HackerProfile(models.Model):
     
     @permalink
     def get_absolute_url(self):
+        if self.user.username == self.user.email:
+            return ('people_userid', (), {'userid': self.user.pk})
         return ('people_profile', (), {'username': self.user.username})
 
     class Meta:
