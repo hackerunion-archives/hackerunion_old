@@ -181,6 +181,11 @@ LOGGING = {
             'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': True,
         },
+        'django': {
+            'handlers': ['null'],
+            'level': 'INFO',
+            'propagate': True,
+        },
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
@@ -188,6 +193,12 @@ LOGGING = {
         },
     },
 }
+
+# Authentication
+AUTHENTICATION_BACKENDS = [
+    'people.auth.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # User profile settings
 AUTH_PROFILE_MODULE = 'people.HackerProfile'
