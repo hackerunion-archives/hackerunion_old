@@ -3,8 +3,8 @@ from django.db import models
 
 
 class Chapter(models.Model):
-    subdomain = models.CharField(max_length=16)
-    name = models.CharField(max_length=64, verbose_name='location')
+    subdomain = models.CharField(max_length=16, unique=True)
+    name = models.CharField(max_length=64, unique=True, verbose_name='location')
     
     @property
     def location(self):
