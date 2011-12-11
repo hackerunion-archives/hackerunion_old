@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render, \
                              render_to_response
 from django.core.validators import email_re
@@ -39,8 +40,8 @@ def signup(request):
         errors.append('Password must be at least 6 characters.')
     if not email_re.match(email):
         errors.append('Email is not valid.')
-    if (User.objects.filter(username=email).exists() or
-        User.objects.filter(email=email).exists()):
+    email_filter = Q(username=email) | Q(email=email)
+    if User.objects.filter(email_filter).exists():
         errors.append('The email is already taken.')
     if hasattr(request, 'chapter'):
         chapter = request.chapter
