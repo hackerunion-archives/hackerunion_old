@@ -1,8 +1,10 @@
 *.pyc
-/db/*
-!/db/README*
-/hackerunion/settings_local.py
-/www/media/*
-!/www/media/.gitignore
-/www/static/*
-!/www/static/.gitignore
+db/*
+!db/README*
+hackerunion/settings_local.py
+log/*
+!log/.gitignore
+www/media/*
+!www/media/.gitignore
+www/static/*
+!www/static/.gitignore
