@@ -13,6 +13,8 @@ class HackerProfile(models.Model):
     ]
     
     user = models.OneToOneField(User)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
     
     # Personal info
     birthdate = models.DateField(blank=True)
