@@ -5,7 +5,9 @@ from django.db import models
 
 
 class ChapterManager(models.Manager):
-    def get_default_chapter(self):
+    def get_default_chapter(self, request=None):
+        if request and request.user.is_authenticated():
+            return request.user.get_profile().chapter
         return self.all()[0]
 
 

@@ -30,8 +30,10 @@ class ChapterRoutingMiddleware(object):
             try:
                 chapter = Chapter.objects.get(subdomain=subdomain)
             except Chapter.DoesNotExist:
-                chapter = Chapter.objects.get_default_chapter()
+                chapter = Chapter.objects.get_default_chapter(request)
                 logger.debug('Defaulting to chapter: %s', chapter)
+        else:
+            chapter = Chapter.objects.get_default_chapter(request)
         assert chapter is not None, 'chapter should be set in DEBUG mode'
         request.chapter = chapter
 
