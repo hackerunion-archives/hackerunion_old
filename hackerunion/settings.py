@@ -189,6 +189,12 @@ LOGGING = {
     },
 }
 
+# Authentication
+AUTHENTICATION_BACKENDS = [
+    'people.auth.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 # User profile settings
 AUTH_PROFILE_MODULE = 'people.HackerProfile'
 
