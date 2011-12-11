@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', direct_to_template, {'template': 'base.html'}, name='homepage'),
+    url(r'^$', direct_to_template, {'template': 'homepage.html'}, name='homepage'),
     (r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
     
     (r'^chapters/', include('chapters.urls')),
