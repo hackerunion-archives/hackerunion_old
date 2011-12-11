@@ -40,7 +40,8 @@ def signup(request):
         errors.append('Password must be at least 6 characters.')
     if not email_re.match(email):
         errors.append('Email is not valid.')
-    if User.objects.filter(username=email).exists():
+    if (User.objects.filter(username=email).exists() or
+        User.objects.filter(email=email).exists()):
         errors.append('The email is already taken.')
 
     # Re-render the form with validation errors, if necessary.
