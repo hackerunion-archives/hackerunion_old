@@ -4,9 +4,16 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 
+class ChapterManager(models.Manager):
+    def get_default_chapter(self):
+        return self.all()[0]
+
+
 class Chapter(models.Model):
     subdomain = models.CharField(max_length=16, unique=True)
     name = models.CharField(max_length=64, unique=True, verbose_name='location')
+    
+    objects = ChapterManager()
     
     @property
     def location(self):
