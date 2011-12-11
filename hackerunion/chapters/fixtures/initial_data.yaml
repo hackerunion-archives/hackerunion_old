@@ -1,0 +1,3 @@
+- fields: {name: New York, subdomain: nyc}
+  model: chapters.chapter
+  pk: 1
