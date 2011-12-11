@@ -168,9 +168,12 @@ LOGGING = {
     }
 }
 
+# User profile settings
 AUTH_PROFILE_MODULE = 'people.HackerProfile'
 
 
+# Local settings. If you want to override any of the default settings,
+# create a file called settings_local.py and set your own options there.
 try:
     from settings_local import *
 except ImportError:
