@@ -3,6 +3,7 @@
 
 {% with hacker.get_profile as profile %}
   <h1>{{ hacker.get_full_name }} ({{ hacker.username }})</h1>
+  <p>Chapter: {{ profile.chapter.name }}</p>
   {% if profile.birthdate %}<p>Born on {{ profile.birthdate|date:"F j, Y" }} ({{ profile.birthdate|timesince }} old)</p>{% endif %}
   
   {% cache 3600 people.profile.gravatar hacker.username %}

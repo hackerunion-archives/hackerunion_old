@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import permalink, signals
+from chapters.models import Chapter
 
 
 class HackerProfile(models.Model):
@@ -15,6 +16,9 @@ class HackerProfile(models.Model):
     user = models.OneToOneField(User)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    
+    # Chapter
+    chapter = models.ForeignKey(Chapter, related_name='users')
     
     # Personal info
     birthdate = models.DateField(blank=True)
