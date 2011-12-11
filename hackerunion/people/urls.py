@@ -3,6 +3,7 @@ from django.views.generic.simple import direct_to_template
 from people.views import *
 
 urlpatterns = patterns('',
+    url(r'^list/$', list),
     url(r'^signup/$', signup),
     url(r'^signup_confirmation/$', direct_to_template, {'template': 'people/signup_confirmation.html'}),
     url(r'^$', direct_to_template, {'template': 'people/base.html'}, name='people_index'),

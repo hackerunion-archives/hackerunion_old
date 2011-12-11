@@ -20,10 +20,11 @@ def profile(request, username):
     return render(request, 'people/profile.html', {'hacker': user})
 
 
-# Do the signup.
-# - Validate the fields and redirect them back to the form
-# - Or, Create the user, log them in, and send them to dashboard
 def signup(request):
+    """Do the signup.
+    - Validate the fields and redirect them back to the form
+    - Or, Create the user, log them in, and send them to dashboard
+    """
     if request.method == 'GET':
         return render(request, 'people/signup.html')
 
@@ -53,6 +54,12 @@ def signup(request):
     assert request.chapter is not None, \
            'user hit a signup page outside of chapter'
     prof = HackerProfile.objects.create(user=user, chapter=request.chapter)
-    
+
     # TODO: Log them in
     return render(request, 'people/signup_confirmation.html', {'hacker': user})
+
+
+def list(request):
+    'Show a list of all users in the chapter.'
+    hackers = HackerProfile.objects.all() # filter(chapter=request.chapter)
+    return render(request, 'people/list.html', {'hackers': hackers})

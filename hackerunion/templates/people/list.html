@@ -1,0 +1,27 @@
+{% extends 'people/bootstrap.html' %}
+
+{% block content %}
+<div class="container" style="margin-top:80px;">
+  <h3>All users</h3>
+  <table>
+    <thead>
+      <tr>
+        <td>User ID</td>
+        <td>Chapter</td>
+        <td>Email</td>
+        <td>Date created</td>
+        <td>Last Modified</td>
+      </tr>
+    </thead>
+    {% for hacker in hackers %}
+      <tr>
+        <td>{{ hacker.user.id }}</td>
+        <td>{{ hacker.chapter }}</td>
+        <td>{{ hacker.user.username }}</td>
+        <td>{{ hacker.date_created }}</td>
+        <td>{{ hacker.last_modified }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
