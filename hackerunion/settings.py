@@ -132,16 +132,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    
+
     # Core apps
     'chapters',
     'events',
     'people',
     'projects',
-    
+
     # Library apps
     'annoying',
-    
+
     # Third-party apps
     'south',
 ]

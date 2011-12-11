@@ -1,0 +1,38 @@
+{% extends 'people/bootstrap.html' %}
+
+{% block content %}
+    <div class="container" style="margin-top:80px;">
+      {% if errors %}
+        <div class="alert-message error">
+          {% for err in errors %}
+            <p>{{ err }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+          <legend>Sign up</legend>
+          <div class="clearfix">
+            <label for="email">Email</label>
+            <div class="input">
+              <input class="xlarge" name="email" size="30" value="{{ params.POST.email }}"></div>
+          </div>
+          <div class="clearfix">
+            <label for="password">Password</label>
+            <div class="input">
+              <input class="xlarge" name="password" size="30" type="password" value=""></div>
+          </div>
+          <div class="clearfix">
+            <label for="password2">Confirm Password</label>
+            <div class="input">
+              <input class="xlarge" name="password2" size="30" type="password" value=""></div>
+          </div>
+
+          <div class="actions">
+            <input type="submit" class="btn primary" value="Create">
+          </div>
+        </fieldset>
+      </form>
+    </div>
+{% endblock %}
