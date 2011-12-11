@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render, \
                              render_to_response
 from django.core.validators import email_re
+from people.models import HackerProfile
 
 def userid(request, userid):
     user = get_object_or_404(User, pk=userid)
@@ -41,6 +42,13 @@ def signup(request):
     if (User.objects.filter(username=email).exists() or
         User.objects.filter(email=email).exists()):
         errors.append('The email is already taken.')
+    if hasattr(request, 'chapter'):
+        chapter = request.chapter
+    else:
+        if settings.DEBUG:
+            chapter = Chapter.objects.all()[0]
+        else:
+            errors.append('You must select a chapter to join.')
 
     # Re-render the form with validation errors, if necessary.
     if errors:
@@ -48,5 +56,7 @@ def signup(request):
 
     # Success!  Create the user.
     user = User.objects.create_user(email, email, password=password)
+    prof = HackerProfile.objects.create(user=user, chapter=chapter)
+    
     # TODO: Log them in
     return render(request, 'people/signup_confirmation.html', {'hacker': user})
