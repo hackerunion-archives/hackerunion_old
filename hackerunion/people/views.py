@@ -5,6 +5,13 @@ from django.shortcuts import get_object_or_404, redirect, render, \
 from django.core.validators import email_re
 from people.models import HackerProfile
 
+
+def people_list(request):
+    profs = HackerProfile.objects.filter(chapter=request.chapter)
+    users = User.objects.filter(pk__in=profs.values_list('user__pk', flat=True))
+    return render(request, 'people/list.html', {'hackers': users})
+
+
 def userid(request, userid):
     user = get_object_or_404(User, pk=userid)
     if user.username != user.email:
