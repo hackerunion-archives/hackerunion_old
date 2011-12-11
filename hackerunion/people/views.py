@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render, \
                              render_to_response
-from annoying.decorators import render_to
 from django.core.validators import email_re
 
 def userid(request, userid):
@@ -14,11 +13,10 @@ def userid(request, userid):
                               context_instance=RequestContext(request))
 
 
-@render_to('people/profile.html')
 def profile(request, username):
     user = get_object_or_404(User, username=username)
     # `user` variable is already taken by a context processor
-    return {'hacker': user}
+    return render(request, 'people/profile.html', {'hacker': user})
 
 
 # Do the signup.

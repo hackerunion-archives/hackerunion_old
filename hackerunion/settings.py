@@ -139,9 +139,6 @@ INSTALLED_APPS = [
     'people',
     'projects',
 
-    # Library apps
-    'annoying',
-
     # Third-party apps
     'south',
 ]
