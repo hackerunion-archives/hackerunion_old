@@ -9,18 +9,20 @@
         <td>User ID</td>
         <td>Chapter</td>
         <td>Email</td>
-        <td>Date created</td>
+        <td>Date Created</td>
         <td>Last Modified</td>
       </tr>
     </thead>
-    {% for hacker in hackers %}
-      <tr>
-        <td>{{ hacker.user.id }}</td>
-        <td>{{ hacker.chapter }}</td>
-        <td>{{ hacker.user.username }}</td>
-        <td>{{ hacker.date_created }}</td>
-        <td>{{ hacker.last_modified }}</td>
-      </tr>
+    {% for profile in profiles.all %}
+      {% with profile.user as hacker %}
+        <tr>
+          <td>{{ hacker.id }}</td>
+          <td>{{ profile.chapter }}</td>
+          <td><a href="{{ profile.get_absolute_url }}">{{ hacker.email }}</a></td>
+          <td>{{ hacker.date_joined|date:"F j, Y" }}</td>
+          <td>{{ profile.last_modified }}</td>
+        </tr>
+      {% endwith %}
     {% endfor %}
   </table>
 </div>
