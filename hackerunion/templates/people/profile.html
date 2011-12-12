@@ -1,24 +1,30 @@
+{% extends "base.html" %}
+
 {% load cache %}
 {% load people %}
 
-{% with hacker.get_profile as profile %}
-  <h1>{{ hacker.get_full_name }} ({{ hacker.username }})</h1>
-  <p>Chapter: {{ profile.chapter.name }}</p>
-  {% if profile.birthdate %}<p>Born on {{ profile.birthdate|date:"F j, Y" }} ({{ profile.birthdate|timesince }} old)</p>{% endif %}
+{% block title %}{{ hacker.get_full_name }}{% endblock %}
   
-  {% cache 3600 people.profile.gravatar hacker.username %}
-    <img src="{{ profile|gravatar_url }}">
-  {% endcache %}
-  
-  {% if profile.availability %}
-    <p>Availability: {{ profile.get_availability_display }}</p>
-  {% endif %}
-  
-  <ul>
-    <li><a href="mailto:{{ profile.contact_email }}">{{ profile.contact_email }}</a></li>
-    {% if profile.website %}<li><a href="{{ profile.website }}">{{ profile.website|pretty_url }}</a></li>{% endif %}
-    {% if profile.twitter_username %}<li><a href="http://twitter.com/{{ profile.twitter_username }}">@{{ profile.twitter_username }}</a></li>{% endif %}
-    {% if profile.facebook_username %}<li><a href="http://facebook.com/{{ profile.facebook_username }}">facebook.com/{{ profile.facebook_username }}</a></li>{% endif %}
-    {% if profile.tumblr_username %}<li><a href="http://{{ profile.tumblr_username}}.tumblr.com">{{ profile.tumblr_username }}.tumblr.com</a></li>{% endif %}
-  </ul>
-{% endwith %}
+{% block content %}
+  {% with hacker.get_profile as profile %}
+    <h1>{{ hacker.get_full_name }} ({{ hacker.username }})</h1>
+    <p>Chapter: {{ profile.chapter.name }}</p>
+    {% if profile.birthdate %}<p>Born on {{ profile.birthdate|date:"F j, Y" }} ({{ profile.birthdate|timesince }} old)</p>{% endif %}
+
+    {% cache 3600 people.profile.gravatar hacker.username %}
+      <img src="{{ profile|gravatar_url }}">
+    {% endcache %}
+
+    {% if profile.availability %}
+      <p>Availability: {{ profile.get_availability_display }}</p>
+    {% endif %}
+
+    <ul>
+      <li><a href="mailto:{{ profile.contact_email }}">{{ profile.contact_email }}</a></li>
+      {% if profile.website %}<li><a href="{{ profile.website }}">{{ profile.website|pretty_url }}</a></li>{% endif %}
+      {% if profile.twitter_username %}<li><a href="http://twitter.com/{{ profile.twitter_username }}">@{{ profile.twitter_username }}</a></li>{% endif %}
+      {% if profile.facebook_username %}<li><a href="http://facebook.com/{{ profile.facebook_username }}">facebook.com/{{ profile.facebook_username }}</a></li>{% endif %}
+      {% if profile.tumblr_username %}<li><a href="http://{{ profile.tumblr_username}}.tumblr.com">{{ profile.tumblr_username }}.tumblr.com</a></li>{% endif %}
+    </ul>
+  {% endwith %}
+{% endblock %}

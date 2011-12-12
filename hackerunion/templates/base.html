@@ -1,24 +1,34 @@
 <!doctype html>
+
 <html>
 	<head>
-		<title>{% block page_title %}{% endblock %} | Hacker Union</title>
+		<title>{% block title %}{% endblock %} | Hacker Union</title>
+		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+		{% block extra-styles %}{% endblock %}
 	</head>
 	<body>
+	  {% block topbar %}
+	    <section id="navigation">
+        <div class="topbar-wrapper" style="z-index:5;">
+          <div class="topbar" data-dropdown="dropdown">
+            <div class="topbar-inner">
+              <div class="container">
+                <h3><a>Hacker Union</a></h3>
+                <ul class="nav">
+                  <li class="dropdown">
+                    <a class="dropdown-toggle">Chapter</a>
+                    <ul class="dropdown-menu">
+                      <li class="active">NYC</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+	  {% endblock %}
 		{% block content %}{% endblock %}
-		<script type="text/javascript">
-			var _gaq = [
-				['_setAccount', 'UA-27642951-1'],
-				['_trackPageview']
-			];
-			(function(){
-				var ga = document.createElement('script');
-				ga.type = 'text/javascript';
-				ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(ga, s);
-			})();
-		</script>
+		{% include "analytics.html" %}
 	</body>
 </html>
-
