@@ -7,9 +7,8 @@ from people.models import HackerProfile
 
 
 def people_list(request):
-    profs = HackerProfile.objects.filter(chapter=request.chapter)
-    users = User.objects.filter(pk__in=profs.values_list('user__pk', flat=True))
-    return render(request, 'people/list.html', {'hackers': users})
+    profiles = request.chapter.users
+    return render(request, 'people/list.html', {'profiles': profiles})
 
 
 def userid(request, userid):
@@ -64,9 +63,3 @@ def signup(request):
 
     # TODO: Log them in
     return render(request, 'people/signup_confirmation.html', {'hacker': user})
-
-
-def list(request):
-    'Show a list of all users in the chapter.'
-    hackers = HackerProfile.objects.all() # filter(chapter=request.chapter)
-    return render(request, 'people/list.html', {'hackers': hackers})
