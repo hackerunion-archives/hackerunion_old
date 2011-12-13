@@ -115,6 +115,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
+    'chapters.context_processors.chapter',
 ]
 
 ROOT_URLCONF = 'hackerunion.urls'
