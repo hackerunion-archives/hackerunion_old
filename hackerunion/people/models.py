@@ -5,14 +5,6 @@ from chapters.models import Chapter
 
 
 class HackerProfile(models.Model):
-    AVAILABILITY_CHOICES = [
-        (0, 'Unspecified'),
-        (1, 'Not available'),
-        (2, 'Available for work'),
-        (3, 'Available for contracts'),
-        (4, 'Contact for availability'),
-    ]
-    
     user = models.OneToOneField(User)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
@@ -25,7 +17,6 @@ class HackerProfile(models.Model):
     
     # Contact info
     preferred_contact_email = models.EmailField(blank=True, verbose_name='Contact email')
-    availability = models.PositiveSmallIntegerField(choices=AVAILABILITY_CHOICES, default=0)
     website = models.URLField(blank=True)
     
     # Social networking info
