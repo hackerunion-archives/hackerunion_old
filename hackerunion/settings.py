@@ -5,7 +5,8 @@
 import os.path
 import sys
 
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PROJECT = lambda *args: os.path.join(PROJECT_ROOT, *args)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -20,7 +21,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_DIR, os.path.pardir, 'db', 'hackerunion.db'),
+        'NAME': PROJECT(os.path.pardir, 'db', 'hackerunion.db'),
     }
 }
 
@@ -56,7 +57,7 @@ USE_L10N = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(PROJECT_DIR, os.path.pardir, 'www', 'media')
+MEDIA_ROOT = PROJECT(os.path.pardir, 'www', 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -67,7 +68,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_DIR, os.path.pardir, 'www', 'static')
+STATIC_ROOT = PROJECT(os.path.pardir, 'www', 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -121,7 +122,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
 ROOT_URLCONF = 'hackerunion.urls'
 
 TEMPLATE_DIRS = [
-    os.path.join(PROJECT_DIR, 'templates'),
+    PROJECT('templates'),
 ]
 
 INSTALLED_APPS = [
@@ -161,7 +162,7 @@ LOGGING = {
         'default': {
             'level': 'DEBUG' if DEBUG else 'INFO',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(PROJECT_DIR, '..', 'log', 'hacker-union.log'),
+            'filename': PROJECT(os.path.pardir, 'log', 'hacker-union.log'),
             'formatter': 'default',
         },
         'null': {
@@ -207,4 +208,4 @@ AUTH_PROFILE_MODULE = 'people.HackerProfile'
 try:
     from settings_local import *
 except ImportError:
-    print >>sys.stderr, "Local settings could not be imported."
+    print >>sys.stderr, "Local settings were not imported."
