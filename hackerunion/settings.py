@@ -140,6 +140,7 @@ INSTALLED_APPS = [
     'events',
     'people',
     'projects',
+    'tagging',
 
     # Third-party apps
     'south',
