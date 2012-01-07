@@ -4,18 +4,22 @@ from django.db import models
 from tagging.models import Tag
 
 
+def title_not_new(title):
+    if title.lower() == 'new':
+        raise ValidationError('Your project may not be named New.')
+
+
 class Project(models.Model):
     creator = models.ForeignKey(User, related_name='projects')
     created_on = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=64, unique=True)
+    title = models.CharField(max_length=64, unique=True,
+        validators=[title_not_new])
     slug = models.SlugField(max_length=64)
     descriptions = models.TextField()
     tags = models.ManyToManyField(Tag, related_name='projects')
     is_active = models.BooleanField('Active?', default=True)
     
     def clean(self):
-        if self.title.lower() == 'new':
-            raise ValidationError('Your project may not be named New.')
         if (self.is_active and
             self.creator.projects.filter(is_active=True).exists()):
             raise ValidationError('A user may only have 1 active project.')

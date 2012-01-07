@@ -4,6 +4,12 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 
+def alphanumeric_subdomains(subdomain):
+    for ch in subdomain:
+        if not ch.isalnum():
+            raise ValidationError('Subdomains must be alphanumeric.')
+
+
 class ChapterManager(models.Manager):
     def get_default_chapter(self, request=None):
         if request and request.user.is_authenticated():
@@ -12,7 +18,8 @@ class ChapterManager(models.Manager):
 
 
 class Chapter(models.Model):
-    subdomain = models.CharField(max_length=16, unique=True)
+    subdomain = models.CharField(max_length=16, unique=True,
+        validators=[alphanumeric_subdomains])
     name = models.CharField(max_length=64, unique=True, verbose_name='location')
     
     objects = ChapterManager()
@@ -30,8 +37,3 @@ class Chapter(models.Model):
     
     def __str__(self):
         return self.subdomain
-    
-    def clean(self):
-        for ch in self.subdomain:
-            if not ch.isalnum():
-                raise ValidationError('Subdomains must be alphanumeric')
