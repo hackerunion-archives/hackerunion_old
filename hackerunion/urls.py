@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.views.generic.simple import direct_to_template, redirect_to
+from people.views import signup
 
 from django.contrib import admin
 admin.autodiscover()
@@ -8,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', direct_to_template, {'template': 'homepage.html'}, name='homepage'),
     (r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
     
-    url(r'^signup/$', signup, name='signup')
+    url(r'^signup/$', signup, name='signup'),
     
     (r'^chapters/', include('chapters.urls')),
     (r'^events/', include('events.urls')),
