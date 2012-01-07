@@ -9,6 +9,12 @@ def title_not_new(title):
         raise ValidationError('Your project may not be named New.')
 
 
+class ActiveProjectManager(models.Manager):
+    def get_query_set(self):
+        default_qs = super(ActiveProjectManager, self).get_query_set()
+        return default_qs.filter(is_active=True)
+
+
 class Project(models.Model):
     creator = models.ForeignKey(User, related_name='projects')
     created_on = models.DateTimeField(auto_now_add=True)
@@ -18,6 +24,9 @@ class Project(models.Model):
     descriptions = models.TextField()
     tags = models.ManyToManyField(Tag, related_name='projects')
     is_active = models.BooleanField('Active?', default=True)
+    
+    objects = models.Manager()
+    active_projects = ActiveProjectManager()
     
     def clean(self):
         projects = self.creator.projects.filter(is_active=True)
