@@ -20,8 +20,10 @@ class Project(models.Model):
     is_active = models.BooleanField('Active?', default=True)
     
     def clean(self):
-        if (self.is_active and
-            self.creator.projects.filter(is_active=True).exists()):
+        projects = self.creator.projects.filter(is_active=True)
+        if self.pk:
+            projects = projects.exclude(pk=self.pk)
+        if self.is_active and projects.exists():
             raise ValidationError('A user may only have 1 active project.')
     
     @models.permalink
