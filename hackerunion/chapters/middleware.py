@@ -14,6 +14,11 @@ class ChapterRoutingMiddleware(object):
         domain_name = request.META.get('SERVER_NAME')
         if not domain_name:
             domain_name = Site.objects.get_current().domain
+        # While running tests, the server name will be "testserver".
+        # Grab a random chapter and use its subdomain during tests.
+        if domain_name == 'testserver':
+            test_chapter = Chapter.objects.all()[0]
+            domain_name = '%s.hackerunion.org' % test_chapter.subdomain
         parts = domain_name.split('.')
         subdomain = parts[0]
         chapter = None
